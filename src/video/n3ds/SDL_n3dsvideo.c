@@ -72,7 +72,12 @@ static void N3DS_DeleteDevice(SDL_VideoDevice *device)
     SDL_free(device->driverdata);
     SDL_free(device);
 }
-
+static void N3DS_GL_DefaultProfileConfig(_THIS, int *mask, int *major, int *minor)
+{
+    *mask = SDL_GL_CONTEXT_PROFILE_ES;
+    *major = 1;
+    *minor = 1;
+}
 static SDL_VideoDevice *N3DS_CreateDevice(void)
 {
     SDL_VideoDevice *device;
@@ -128,6 +133,8 @@ static SDL_VideoDevice *N3DS_CreateDevice(void)
     device->GL_SwapWindow = N3DS_GL_SwapWindow;
     device->GL_DeleteContext = N3DS_GL_DeleteContext;
 
+    device->GL_DefaultProfileConfig = N3DS_GL_DefaultProfileConfig;
+
     device->quirk_flags = VIDEO_DEVICE_QUIRK_FULLSCREEN_ONLY;
 
     return device;
@@ -148,6 +155,7 @@ static int N3DS_VideoInit(_THIS)
     N3DS_InitTouch();
     N3DS_SwkbInit();
 
+    SDL_GL_LoadLibrary(NULL);
     return 0;
 }
 

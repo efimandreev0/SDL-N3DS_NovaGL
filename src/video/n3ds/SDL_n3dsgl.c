@@ -20,6 +20,9 @@ void N3DS_GL_UnloadLibrary(_THIS) {
 SDL_GLContext N3DS_GL_CreateContext(_THIS, SDL_Window *window) {
     (void)window;
 
+    gfxExit();
+
+    gfxInitDefault();
     nova_init();
 
     return (SDL_GLContext)1;
