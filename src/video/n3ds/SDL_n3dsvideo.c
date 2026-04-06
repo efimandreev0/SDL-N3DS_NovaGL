@@ -28,6 +28,7 @@
 #include "SDL_n3dsswkb.h"
 #include "SDL_n3dstouch.h"
 #include "SDL_n3dsvideo.h"
+#include "SDL_n3dsgl_c.h"
 
 #define N3DSVID_DRIVER_NAME "n3ds"
 
@@ -115,6 +116,17 @@ static SDL_VideoDevice *N3DS_CreateDevice(void)
     device->DestroyWindowFramebuffer = SDL_N3DS_DestroyWindowFramebuffer;
 
     device->free = N3DS_DeleteDevice;
+
+    // Setting GL-context for SDL.
+    device->GL_LoadLibrary = N3DS_GL_LoadLibrary;
+    device->GL_GetProcAddress = N3DS_GL_GetProcAddress;
+    device->GL_UnloadLibrary = N3DS_GL_UnloadLibrary;
+    device->GL_CreateContext = N3DS_GL_CreateContext;
+    device->GL_MakeCurrent = N3DS_GL_MakeCurrent;
+    device->GL_SetSwapInterval = N3DS_GL_SetSwapInterval;
+    device->GL_GetSwapInterval = N3DS_GL_GetSwapInterval;
+    device->GL_SwapWindow = N3DS_GL_SwapWindow;
+    device->GL_DeleteContext = N3DS_GL_DeleteContext;
 
     device->quirk_flags = VIDEO_DEVICE_QUIRK_FULLSCREEN_ONLY;
 

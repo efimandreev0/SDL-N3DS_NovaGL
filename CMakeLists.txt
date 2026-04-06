@@ -2886,7 +2886,8 @@ elseif(OS2)
 
 elseif(N3DS)
   file(GLOB N3DS_MAIN_SOURCES ${SDL2_SOURCE_DIR}/src/main/n3ds/*.c)
-  set(SDLMAIN_SOURCES ${SDLMAIN_SOURCES} ${N3DS_MAIN_SOURCES})
+  set(SDLMAIN_SOURCES ${SDLMAIN_SOURCES} ${N3DS_MAIN_SOURCES}
+          src/video/n3ds/SDL_n3dsgl_c.h)
 
   if(SDL_AUDIO)
     set(SDL_AUDIO_DRIVER_N3DS 1)
@@ -3456,7 +3457,8 @@ if(APPLE)
 endif()
 
 if(SDL_SHARED)
-  add_library(SDL2 SHARED ${SOURCE_FILES} ${VERSION_SOURCES})
+  add_library(SDL2 SHARED ${SOURCE_FILES} ${VERSION_SOURCES}
+          src/video/n3ds/SDL_n3dsgl.c)
   add_dependencies(SDL2 sdl_headers_copy)
   # alias target for in-tree builds
   add_library(SDL2::SDL2 ALIAS SDL2)
