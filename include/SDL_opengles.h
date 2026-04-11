@@ -28,6 +28,8 @@
 #ifdef __IPHONEOS__
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
+#elif __3DS__
+#include <../../../devkitpro/portlibs/3ds/include/NovaGL.h>
 #else
 #include <GLES/gl.h>
 #include <GLES/glext.h>
