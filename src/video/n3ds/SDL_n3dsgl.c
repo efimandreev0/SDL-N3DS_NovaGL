@@ -59,6 +59,5 @@ void N3DS_GL_DeleteContext(_THIS, SDL_GLContext context) {
 
 void *N3DS_GL_GetProcAddress(_THIS, const char *proc) {
     (void)_this;
-    novaglGetProcAddress(proc);
-    return NULL;
+    return novaglGetProcAddress(proc); //epic bruh moment: getting proc address.
 }
